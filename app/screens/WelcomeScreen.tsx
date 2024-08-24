@@ -3,6 +3,8 @@ import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 
 //?Code imports
 import colors from '../config/colors';
+import AccessButton from '../components/AccessButton';
+
 
 function WelcomeScreen() {
     return (
@@ -10,16 +12,17 @@ function WelcomeScreen() {
         <ImageBackground
             style={styles.container}
             source={require("../appAssets/background.jpg")}
+            blurRadius={5}
         >
             <View style={styles.logoContainer}>
                 <Image
                     style={styles.logo}
                     source={require("../appAssets/logo-red.png")}
                 />
-                <Text style={styles.tagline}>Sell What you don't need</Text>
+                <Text style={styles.tagline}>Sell What You don't Need</Text>
             </View>
-            <View style={styles.login}></View>
-            <View style={styles.register}></View>
+            <AccessButton title="login" onPress={() => console.log("Login button handled")} />
+            <AccessButton title="register" onPress={() => console.log("Register button handled")} color = "secondary"/>
         </ImageBackground>
     );
 }
@@ -38,19 +41,11 @@ const styles = StyleSheet.create({
     logo: {
         width:100,
         height: 100,
+        marginBottom: 10
     },
     tagline: {
         fontWeight: "600", // *Gives the text more visibility PREVENTS CROPPING!!
-    },
-    login: {
-        width:"100%",
-        height: 70,
-        backgroundColor: colors.primary,
-    },
-    register: {
-        width:"100%",
-        height: 70,
-        backgroundColor: colors.secondary
+        fontSize: 25
     },
 
 })
