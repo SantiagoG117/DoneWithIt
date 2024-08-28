@@ -8,7 +8,6 @@ import colors from '../config/colors';
 function AppText({children, style, color} : any) {
     return (
         <Text 
-            
             style={[
                     styles.text, 
                     style, 

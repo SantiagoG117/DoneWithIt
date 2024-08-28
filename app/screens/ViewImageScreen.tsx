@@ -11,8 +11,6 @@ function ViewImageScreen() {
     return (
         //*Container
         <View style={styles.container}>
-            {/* Close Icon */}
-            
             <View style={styles.closeIcon}>
                 <MaterialCommunityIcons name="close" size={30} color="white" />
             </View>
