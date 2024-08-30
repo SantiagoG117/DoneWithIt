@@ -1,18 +1,36 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TextInput  } from "react-native";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 
-import colors from "./config/colors";
-import MyAccountScreen from "./screens/MyAccountScreen";
-import ListingDetailsScreen from "./screens/ListingDetailsScreen";
-import MessagesScreen from "./screens/MessagesScreen";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import StaticListItem from "./components/StaticListItem";
-import ListingsScreen from "./screens/ListingsScreen";
+import AppTextInput from "./components/AppTextInput";
+import AppPicker from "./components/AppPicker";
+import { SetStateAction, useState } from "react";
+
+const categories = [
+  { label: "Furniture", value: 1 },
+  { label: "Clothing", value: 2 },
+  { label: "Cameras", value: 3 },
+];
 
 export default function App() {
-  return (
-    <ListingsScreen/>
+  const [category, setCategory] = useState()
+
+  return (    
+    <View>
+      <AppPicker 
+        /* Sets the category to be displayed on the Picker */
+        selectedItem={category}
+        /* 
+            Event raised by the AppPicker when the user selects an item
+            Changes the selected picker and closes the modal
+         */
+        onSelectItem={(item: SetStateAction<undefined>) => setCategory(item)}
+
+        items={categories} 
+        icon="apps" 
+        placeholder="Pick category"
+      />
+    </View>
 
 
   );
