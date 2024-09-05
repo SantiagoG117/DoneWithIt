@@ -5,6 +5,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AppTextInput from "./components/AppTextInput";
 import AppPicker from "./components/AppPicker";
 import { SetStateAction, useState } from "react";
+import LoginScreen from "./screens/LoginScreen";
 
 const categories = [
   { label: "Furniture", value: 1 },
@@ -16,21 +17,7 @@ export default function App() {
   const [category, setCategory] = useState()
 
   return (    
-    <View>
-      <AppPicker 
-        /* Sets the category to be displayed on the Picker */
-        selectedItem={category}
-        /* 
-            Event raised by the AppPicker when the user selects an item
-            Changes the selected picker and closes the modal
-         */
-        onSelectItem={(item: SetStateAction<undefined>) => setCategory(item)}
-
-        items={categories} 
-        icon="apps" 
-        placeholder="Pick category"
-      />
-    </View>
+    <LoginScreen></LoginScreen>
 
 
   );

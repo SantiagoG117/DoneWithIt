@@ -4,11 +4,12 @@ import { StyleSheet, Text, TouchableOpacity} from 'react-native';
 //?Code imports
 import colors from '../config/colors';
 
-function AccessButton({title, onPress ,color }: any) {
+function AccessButton({title, onPress ,color, style }: any) {
     return (
         <TouchableOpacity 
             style={[
                 styles.button, 
+                style,
                 /* This second object overrides styles in the styles object. If no color is selected, primary will be set by default. */
                 { backgroundColor: colors[color] || colors.primary} // *colors[color] allows us to pick the color dynamically
             ]}
