@@ -1,12 +1,12 @@
 
 import React from 'react';
 import {  View, StyleSheet, FlatList } from 'react-native';
-import StaticListItem from '../components/StaticListItem';
+import StaticListItem from '../components/lists/StaticListItem';
 import AppIcon from '../components/AppIcon';
 
 
 import colors from '../config/colors';
-import ListItemSeparator from '../components/ListItemSeparator';
+import ListItemSeparator from '../components/lists/ListItemSeparator';
 
 
 

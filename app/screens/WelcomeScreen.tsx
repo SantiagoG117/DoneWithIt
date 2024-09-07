@@ -3,7 +3,7 @@ import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 
 //?Code imports
 import colors from '../config/colors';
-import AccessButton from '../components/AccessButton';
+import AppButton from '../components/AppButton';
 
 
 function WelcomeScreen() {
@@ -21,8 +21,8 @@ function WelcomeScreen() {
                 />
                 <Text style={styles.tagline}>Sell What You don't Need</Text>
             </View>
-            <AccessButton title="login" onPress={() => console.log("Login button handled")} />
-            <AccessButton title="register" onPress={() => console.log("Register button handled")} color = "secondary"/>
+            <AppButton title="login" onPress={() => console.log("Login button handled")} />
+            <AppButton title="register" onPress={() => console.log("Register button handled")} color = "secondary"/>
         </ImageBackground>
     );
 }

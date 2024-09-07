@@ -8,8 +8,15 @@ import defaultStyles from "../config/styles"
 function AppTextInput({ icon, ...textInputProps } :any) {
     return (
         <View style={styles.container}>
+
             { icon && <MaterialCommunityIcons name={icon} size={20} color={colors.gray} style={styles.icon} />}
-            <TextInput style={defaultStyles.text} {...textInputProps} />
+
+            <TextInput
+                placeholderTextColor={colors.ligthGray}
+                style={defaultStyles.text} 
+                {...textInputProps} 
+            />
+
         </View>
     );
 }

@@ -1,23 +1,26 @@
 import React from 'react';
-import AppTextInput from './AppTextInput';
+import AppTextInput from '../AppTextInput';
 import AppErrorMessage from './AppErrorMessage';
 
 import { useFormikContext } from 'formik';
 
 /* Defines the structure of our Form values. Necessary for TypeScript to infer the types correctly */
 interface InitialValues {
+    description: string;
     email: string;
+    name: string;
     password: string;
-    
+    price: string;
+    title: string;
 }
 
-/* Ensures that the name prop is a key of FormValue */
+/* Ensures that the initialValue prop is a key of FormValue */
 interface AppFormFieldProps {
-    name: keyof InitialValues;
+    initialValue: keyof InitialValues;
     [key: string]: any //*Allows the component to accept any additional props of type any
 }
 
-function AppFormField({name, ...otherProps} :AppFormFieldProps) {
+function AppFormField({initialValue, ...otherProps} :AppFormFieldProps) {
     /* 
         With context, we can pass an object fown our component tree without having to drill a property at every level so we can 
         consume that object everywhere in our component tree. FormikContext uses react context to pass all its context down
@@ -30,13 +33,13 @@ function AppFormField({name, ...otherProps} :AppFormFieldProps) {
     return (
         <>
             <AppTextInput 
-                onBlur={() => setFieldTouched(name)}
-                onChangeText={handleChange(name)}
+                onBlur={() => setFieldTouched(initialValue)}
+                onChangeText={handleChange(initialValue)}
                 {...otherProps}
             />
 
             {/* Validation  */}
-            <AppErrorMessage error={errors[name]} visible={touched[name]} />
+            <AppErrorMessage error={errors[initialValue]} visible={touched[initialValue]} />
 
             
         </>

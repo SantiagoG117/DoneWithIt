@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity} from 'react-native';
 //?Code imports
 import colors from '../config/colors';
 
-function AccessButton({title, onPress ,color, style }: any) {
+function AppButton({title, onPress ,color, style }: any) {
     return (
         <TouchableOpacity 
             style={[
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default AccessButton;
+export default AppButton;

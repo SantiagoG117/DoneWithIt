@@ -1,15 +1,16 @@
 import React from 'react';
-import AccessButton from './AccessButton';
+import AppButton from '../AppButton';
 import { StyleSheet } from 'react-native';
 
 import { useFormikContext } from 'formik';
 
 function AppSubmitButton({title} :any) {
 
+    /* hanbdleSubmit() submits the Formik form*/
     const {handleSubmit} = useFormikContext();
 
     return (
-        <AccessButton
+        <AppButton
             style={styles.button}
             title={title}
             onPress={handleSubmit}

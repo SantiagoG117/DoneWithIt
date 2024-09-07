@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import AppText from './AppText';
+import AppText from '../AppText';
 
-import colors from '../config/colors';
+import colors from '../../config/colors';
 
 function StaticListItem({title, subtitle, image, IconComponent, style} : any) {
     return (

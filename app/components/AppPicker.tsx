@@ -8,41 +8,56 @@ import defaultStyles from "../config/styles"
 import AppText from './AppText';
 import AppPickerItem from './AppPickerItem';
 
-function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem  } :any) {
+/* 
+    With a picker component we can select a value from a list of values
+*/
+
+function AppPicker({ icon, placeholder, items, onSelectItem, selectedItem  } :any) {
 
     const [modalVisible, setModalVisible] = useState(false);
 
     return (
 
         /* 
-        React.Fragment (<></> allows us to wrap multiple components or elements without having to introducr an additional wrapper) 
+        React.Fragment (<></> allows us to wrap multiple components or elements without having to introduce an additional wrapper) 
         
         */
         
         <>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}> 
                 <View style={styles.container}>
+
                     { icon && <MaterialCommunityIcons 
                                     name={icon} 
                                     size={20} 
                                     color={colors.gray} 
                                     style={styles.icon} 
-                                />}
-                    <AppText style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</AppText>
+                                />
+                    }
+
+                    { selectedItem ? 
+                            (<AppText style={styles.text} color ="darkgray">{selectedItem.label}</AppText>) :
+                            (<AppText style={styles.text} color ="ligthGray">{placeholder}</AppText>)
+                    
+                    }
+
                     <MaterialCommunityIcons 
                         name="chevron-down" 
                         size={20} 
                         color={colors.gray} 
                     />
+
                 </View>
-            
             </TouchableWithoutFeedback>
             
             <Modal
                 visible={modalVisible}
                 animationType="slide"
             >
-                <Button title='Close' onPress={() => setModalVisible(false)}/>
+                <Button 
+                    title='Close' 
+                    onPress={() => setModalVisible(false)}
+                />
                     <FlatList
                         data={items}
                         keyExtractor={item => item.value.toString()}
@@ -52,7 +67,12 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem  } :an
                                         onPress={() => {
                                             /* Close the modal */
                                             setModalVisible(false);
-                                            /* Display the selected category  */
+                                            /* 
+                                                Event raised by the component when the user selects an item
+                                                
+                                                Set the selected item in the FlatList as the current item 
+                                                using useState. By doing so it displays the selected category
+                                            */
                                             onSelectItem(item); 
                                         }}
                                     />}
@@ -83,8 +103,9 @@ const styles = StyleSheet.create({
         top: 4
     },
     text: {
-        flex: 1 //By taking all the available space we are sending the chevron to the right
-    }
+        flex: 1, //By taking all the available space we are sending the chevron to the right
+        fontWeight: 'bold'
+    },
 
 })
 

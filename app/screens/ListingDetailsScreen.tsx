@@ -3,7 +3,7 @@ import { Image, View, StyleSheet } from 'react-native';
 
 
 import AppText from '../components/AppText';
-import StaticListItem from '../components/StaticListItem';
+import StaticListItem from '../components/lists/StaticListItem';
 
 function ListingDetailsScreen() {
     return (

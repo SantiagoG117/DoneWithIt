@@ -1,12 +1,9 @@
 import React from 'react';
-import { Image, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { StyleSheet, TouchableHighlight } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { Swipeable } from 'react-native-gesture-handler';
-
-import AppText from './AppText';
-import colors from '../config/colors';
-import StaticListItem from './StaticListItem';
+import colors from '../../config/colors';
 
 /* 
     To be used in components that require gesture-liked interaction

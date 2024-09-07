@@ -1,13 +1,7 @@
 import { Image, SafeAreaView, StyleSheet } from 'react-native';
-import AppTextInput from '../components/AppTextInput';
-import AccessButton from '../components/AccessButton';
-import {  Formik } from 'formik';
 import * as Yup from 'yup'
-import AppErrorMessage from '../components/AppErrorMessage';
-import AppFormField from '../components/AppFormField';
-import AppSubmitButton from '../components/AppSubmitButton';
-import AppForm from '../components/AppForm';
 
+import {AppForm, AppFormField, AppSubmitButton} from "../components/forms"
 
 /* 
     Validation Schema: 
@@ -35,9 +29,7 @@ function LoginScreen() {
             />
             <AppForm
                 initialValues={{email:'', password:''}}
-
                 validationSchema={validationSchema}
-
                 /* Function that gets called when the form is submitted. */
                 onSubmit={(values: any) => console.log(values)}
             >
@@ -46,14 +38,14 @@ function LoginScreen() {
                     autoCapitalize="none"
                     autoCorrect={false}
                     keyboardType="email-address"
-                    name="email"
+                    initialValue="email"
                     placeholder="Email"
                 />
 
                 <AppFormField 
                     autoCapitalize="none"
                     icon="lock"
-                    name="password"
+                    initialValue="password"
                     placeholder="Password"
                     secureTextEntry={true}
                     textContentType="password"
@@ -63,10 +55,6 @@ function LoginScreen() {
                     title="Login"
                 />
             </AppForm>
-
-
-
-            
         </SafeAreaView>
     );
 }

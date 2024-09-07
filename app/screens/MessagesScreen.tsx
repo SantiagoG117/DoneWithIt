@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native';
 
 import colors from '../config/colors';
-import GestureListItem from '../components/GestureListItem';
-import ListItemSeparator from '../components/ListItemSeparator';
-import ListItemDeleteAction from '../components/ListItemDeleteAction';
-import StaticListItem from '../components/StaticListItem';
+import GestureListItem from '../components/lists/GestureListItem';
+import ListItemSeparator from '../components/lists/ListItemSeparator';
+import ListItemDeleteAction from '../components/lists/ListItemDeleteAction';
+import StaticListItem from '../components/lists/StaticListItem';
 
 const initialMessages = [
     {
