@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import AppText from '../AppText';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import AppText from '../AppText';
 import colors from '../../config/colors';
+
 
 function StaticListItem({title, subtitle, image, IconComponent, style} : any) {
     return (
@@ -15,9 +17,10 @@ function StaticListItem({title, subtitle, image, IconComponent, style} : any) {
 
             {/* This container layout the title and subtitle vertically on the right of the image */}
             <View style={styles.detailsContainer}>
-                <AppText style={styles.title}>{title}</AppText>
-                {subtitle && <AppText color = "gray">{subtitle}</AppText>}
+                <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
+                {subtitle && <AppText color = "gray" numberOfLines={2}>{subtitle}</AppText>}
             </View>
+            <MaterialCommunityIcons name='chevron-right' color={colors.gray} size={25} />
         </View>
     );
 }
@@ -26,6 +29,7 @@ const styles = StyleSheet.create({
     container:{
         backgroundColor: colors.white,
         flexDirection: "row",
+        alignItems: "center",
         padding:15
     },
     detailsContainer: {

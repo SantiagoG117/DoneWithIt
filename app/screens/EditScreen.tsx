@@ -4,11 +4,9 @@ import { AppForm, AppFormField, AppSubmitButton } from '../components/forms';
 
 import AppFormPicker from '../components/forms/AppFormPicker';
 import * as Yup from 'yup'
+import AppCategoryPickerItem from '../components/CategoryPickerItem';
 
-/* 
-    TODO:
-        !Add validation
-*/
+
 
 const validationSchema = Yup.object().shape({
     title: Yup.
@@ -39,15 +37,21 @@ function EditScreen() {
     const categories = [
         {
             value: 1,
-            label: 'Clothes'
+            label: 'Clothes',
+            backgroundColor: 'red',
+            icon: 'apps'
         },
         {
             value: 2,
-            label: 'Forniture'
+            label: 'Forniture',
+            backgroundColor: 'green',
+            icon: 'email'
         },
         {
             value: 3,
-            label: "Camera"
+            label: "Camera",
+            backgroundColor: 'blue',
+            icon: 'lock'
         }
     ];
 
@@ -70,6 +74,7 @@ function EditScreen() {
                     placeholder='Title'
                     autoCapitalize='words'
                     maxlength={255}
+                    
                 />
 
                 <AppFormField
@@ -77,12 +82,16 @@ function EditScreen() {
                     placeholder='Price'
                     keyboardType="numeric"
                     maxlength={8}
+                    width={170}
                 />
 
                 <AppFormPicker 
                     items={categories}
                     initialValue='category'
                     placeholder='Category'
+                    width="50%" 
+                    AppPickerItemComponent={AppCategoryPickerItem}                
+                    numberOfColumns={3}
                 />
 
                 <AppFormField 

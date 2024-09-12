@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, SafeAreaView, StyleSheet, View } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet } from 'react-native';
 
-import colors from '../config/colors';
 import GestureListItem from '../components/lists/GestureListItem';
 import ListItemSeparator from '../components/lists/ListItemSeparator';
 import ListItemDeleteAction from '../components/lists/ListItemDeleteAction';

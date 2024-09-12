@@ -12,7 +12,7 @@ import AppPickerItem from './AppPickerItem';
     With a picker component we can select a value from a list of values
 */
 
-function AppPicker({ icon, placeholder, items, onSelectItem, selectedItem  } :any) {
+function AppPicker({ icon, placeholder, items, onSelectItem, AppPickerItemComponent = AppPickerItem , selectedItem, width = "100%", numberOfColumns = 1  } :any) {
 
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -20,12 +20,11 @@ function AppPicker({ icon, placeholder, items, onSelectItem, selectedItem  } :an
 
         /* 
         React.Fragment (<></> allows us to wrap multiple components or elements without having to introduce an additional wrapper) 
-        
         */
         
         <>
             <TouchableWithoutFeedback onPress={() => setModalVisible(true)}> 
-                <View style={styles.container}>
+                <View style={[styles.container, {width}]}>
 
                     { icon && <MaterialCommunityIcons 
                                     name={icon} 
@@ -61,8 +60,21 @@ function AppPicker({ icon, placeholder, items, onSelectItem, selectedItem  } :an
                     <FlatList
                         data={items}
                         keyExtractor={item => item.value.toString()}
+                        numColumns={numberOfColumns}
                         renderItem={({ item }) => 
-                                    <AppPickerItem
+                                    /* 
+                                        The consumer of the AppPicker component can specify the type of picker item to use
+                                        by sending it as the component prop AppPickerItemComponent. 
+
+                                        The sent component must have a signature with two props: item and onPress.
+                                    */
+                                    <AppPickerItemComponent
+                                        /* 
+                                            item is a general and reusable prop SET TO THE ITEM WE WISH TO RENDER 
+                                            This item is an object that can adjust to the different properties
+                                            of the AppPickerItemComponent sent by the consumer of this component.
+                                        */
+                                        item={item}
                                         label={item.label}
                                         onPress={() => {
                                             /* Close the modal */
@@ -90,7 +102,7 @@ function AppPicker({ icon, placeholder, items, onSelectItem, selectedItem  } :an
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
+        //width: '100%',
         flexDirection: "row",
         backgroundColor: colors.backgroundgray,
         borderRadius: 25,

@@ -5,15 +5,15 @@ import colors from '../config/colors';
 
 /* Styles for Text components encapsulated inside a costume component*/
 
-function AppText({children, style, color} : any) {
+function AppText({children, style, color, ...otherProps} : any) {
     return (
         <Text 
             style={[
                     styles.text, 
                     style, 
                     {color: colors[color] || colors.black}]} 
+            {...otherProps}
         >
-            {/* children is a special property from the props object that allows us to pass inputs in between the Text component*/}
             {children}
         </Text>
     );

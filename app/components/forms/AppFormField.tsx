@@ -20,12 +20,12 @@ interface AppFormFieldProps {
     [key: string]: any //*Allows the component to accept any additional props of type any
 }
 
-function AppFormField({initialValue, ...otherProps} :AppFormFieldProps) {
+function AppFormField({initialValue, width ,...otherTextInputProps} :AppFormFieldProps) {
     /* 
-        With context, we can pass an object fown our component tree without having to drill a property at every level so we can 
-        consume that object everywhere in our component tree. FormikContext uses react context to pass all its context down
+        With context, we can pass an object to our component tree without having to drill a property at every level so we can 
+        consume that object every   where in our component tree. FormikContext uses react context to pass all its context down
 
-        useFormik() returns an object containing Formik's state and helpers.
+        useFormikContext() returns an object containing Formik's state and helpers.
             <InitialValues>: Generic to allow TypeScript to understand the shape of the errors and touched objects
     */
     const {setFieldTouched, handleChange, errors, touched} = useFormikContext<InitialValues>();
@@ -35,7 +35,8 @@ function AppFormField({initialValue, ...otherProps} :AppFormFieldProps) {
             <AppTextInput 
                 onBlur={() => setFieldTouched(initialValue)}
                 onChangeText={handleChange(initialValue)}
-                {...otherProps}
+                width={width}
+                {...otherTextInputProps}
             />
 
             {/* Validation  */}
