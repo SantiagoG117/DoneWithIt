@@ -6,30 +6,28 @@ import AppText from './AppText';
  
 function AppCategoryPickerItem({ item, onPress } : any) {
     return (
-        <View 
-            style={styles.container}        
-        >
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <AppIcon
-               backgroundColor={item.backgroundColor}
-               name={item.icon}
-               size={80}
+                backgroundColor={item.backgroundColor}
+                name={item.icon}
+                size={80}
             />
             <AppText style={styles.label}>{item.label}</AppText>
-        </View>
+        </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     container:{
-        paddingHorizontal:25,
+        paddingHorizontal:20,
         paddingVertical: 15,
         alignItems:"center",
         width: '33%'
     },
     label: {
         marginTop: 5,
-        textAlign: "center"
-
+        textAlign: "center",
+        fontWeight:'bold'
     }
 })
 

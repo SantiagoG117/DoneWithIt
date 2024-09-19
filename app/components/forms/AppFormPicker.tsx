@@ -14,7 +14,6 @@ interface AppFormPickerFields {
 function AppFormPicker(
             {items, initialValue ,width, placeholder, AppPickerItemComponent, numberOfColumns } : 
             {items: any[], initialValue: keyof AppFormPickerFields, width: string, placeholder: string, AppPickerItemComponent: any, numberOfColumns :any }) {
-    
     const {setFieldValue, values, errors, touched} = useFormikContext<AppFormPickerFields>();
 
     return (

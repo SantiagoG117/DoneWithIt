@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { AppForm, AppFormField, AppSubmitButton } from '../components/forms';
 
-import AppFormPicker from '../components/forms/AppFormPicker';
-import * as Yup from 'yup'
 import AppCategoryPickerItem from '../components/CategoryPickerItem';
+import AppFormPicker from '../components/forms/AppFormPicker';
+import FormImagePicker from '../components/FormImagePicker';
+
+import * as Yup from 'yup';
+import useLocation from '../hooks/useLocation';
 
 
 
@@ -21,42 +24,42 @@ const validationSchema = Yup.object().shape({
             max(10000)
             .label('Price'),
     category: Yup.
-                object().
-                required()
+                object()
+                .required()
                 .nullable()
                 .label('Category'),
     description: Yup.
                 string().
                 optional().
-                label('Description')
-    
-
+                label('Description'),
+    images: Yup.
+                array()
+                .min(1, "Please select at least one image.")
 })
 
+const categories = [
+    {
+        value: 1,
+        label: 'Clothes',
+        backgroundColor: 'red',
+        icon: 'apps'
+    },
+    {
+        value: 2,
+        label: 'Forniture',
+        backgroundColor: 'green',
+        icon: 'email'
+    },
+    {
+        value: 3,
+        label: "Camera",
+        backgroundColor: 'blue',
+        icon: 'lock'
+    }
+];
+
 function EditScreen() {
-    const categories = [
-        {
-            value: 1,
-            label: 'Clothes',
-            backgroundColor: 'red',
-            icon: 'apps'
-        },
-        {
-            value: 2,
-            label: 'Forniture',
-            backgroundColor: 'green',
-            icon: 'email'
-        },
-        {
-            value: 3,
-            label: "Camera",
-            backgroundColor: 'blue',
-            icon: 'lock'
-        }
-    ];
-
- 
-
+    const location = useLocation();
     return (
         <SafeAreaView style={styles.container}>
             <AppForm
@@ -64,11 +67,16 @@ function EditScreen() {
                     title:'', 
                     price:"", //Eventhough price is a number, it is represented as a string inside the form
                     category:null, // We either have a category or we don't. If we don't its value will be null
-                    description:''
+                    description:'',
+                    images:[] //Set the data type of the images as an empty array
                 }}
                 onSubmit={(values: any) => console.log(values)}
                 validationSchema={validationSchema}
             >
+                <FormImagePicker
+                    initialValue="images"
+                />
+
                 <AppFormField
                     initialValue='title'
                     placeholder='Title'
