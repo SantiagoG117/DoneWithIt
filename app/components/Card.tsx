@@ -3,6 +3,7 @@ import { Image, ImageSourcePropType, View, StyleSheet, Text } from 'react-native
 
 import colors from '../config/colors';
 import AppText from './AppText';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 
 /* 
@@ -10,21 +11,22 @@ import AppText from './AppText';
         Consumer of this component can pass as property of the imageSource object require("local/path") for local images or {uri: 'https://remote/path'} for remote images
         ImageSourcePropType: Type that defines the possible values for the 'source' prop in the Image component. It can include Local Image Sources and Remote Image URL
 */
-function AppCard({title , subTitle, imageSource} : {title: string, subTitle: string ,imageSource: ImageSourcePropType} ) {
+function AppCard({title , subTitle, imageSource, onPress} : {title: string, subTitle: string ,imageSource: ImageSourcePropType, onPress: any} ) {
     return (
-        <View style={styles.card}>
-        
-            <Image
-                source={imageSource}
-                style={styles.image}
-            >
-            </Image>
-            <View style={styles.detailsContainer}>
-                <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
-                <AppText style={styles.subTitle} color ="secondary" numberOfLines={2}>{subTitle}</AppText>
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={styles.card}>
+                <Image
+                    source={imageSource}
+                    style={styles.image}
+                >
+                </Image>
+                <View style={styles.detailsContainer}>
+                    <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
+                    <AppText style={styles.subTitle} color ="secondary" numberOfLines={2}>{subTitle}</AppText>
+                </View>
+                
             </View>
-            
-        </View>
+        </TouchableWithoutFeedback>
     );
 }
 

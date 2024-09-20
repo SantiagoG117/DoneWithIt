@@ -23,11 +23,12 @@ const menuItems = [
         icon: {
             name: "email",
             backgroundColor: colors.secondary
-        }
+        },
+        targetScreen: "Messages"
     }
 ]
 
-function MyAccountScreen() {
+function MyAccountScreen({navigation} :any) {
 
     return (
         <View style={styles.container}>
@@ -47,6 +48,7 @@ function MyAccountScreen() {
                         <StaticListItem
                             title={item.title}
                             IconComponent={<AppIcon name={item.icon.name} backgroundColor={item.icon.backgroundColor} />}
+                            onPress={() => navigation.navigate(item.targetScreen, item)}
                         />
                     }
                     ItemSeparatorComponent={() => <ListItemSeparator/>}

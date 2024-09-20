@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import AppCard from '../components/Card';
 import colors from '../config/colors';
-
+import routes from '../navigation/routes';
 
 
 const cardList = [
@@ -21,14 +21,20 @@ const cardList = [
 
 ]
 
-function ListingsScreen() {
+function ListingsScreen({navigation} :any) {
     return (
         <View style={styles.container}>
             <FlatList
                 data={cardList}
                 keyExtractor={cardItem => cardItem.id.toString()}
                 renderItem={({ item }) => 
-                    <AppCard title={item.title} subTitle={item.subtitle} imageSource={item.imageSource} />
+                    <AppCard 
+                        title={item.title} 
+                        subTitle={item.subtitle} 
+                        imageSource={item.imageSource} 
+                        /* Pass each item as a second parameter to the ListingDetails */
+                        onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+                    />
                 }
             />
         </View>

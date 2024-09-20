@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
-import ImageInput from "./components/forms/ImageInput";
-import ImageInputList from "./components/ImageInputList";
-import FormImagePicker from "./components/FormImagePicker";
-import EditScreen from "./screens/EditScreen";
+import { Button, SafeAreaView, Text, View } from "react-native";
+
+import { createStackNavigator } from "@react-navigation/stack";
+import { DefaultTheme, NavigationContainer, useNavigation } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import AuthNavigator from "./navigation/AuthNavigator";
+import navigationTheme from "./navigation/NavigationTheme";
+import AppNavigator from "./navigation/AppNavigator";
+
+
 
 export default function App() {
-  
-
   return (
-    <EditScreen></EditScreen>
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator></AppNavigator>
+    </NavigationContainer>
   );
 }
 

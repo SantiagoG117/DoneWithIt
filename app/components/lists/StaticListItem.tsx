@@ -1,27 +1,30 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import AppText from '../AppText';
 import colors from '../../config/colors';
 
 
-function StaticListItem({title, subtitle, image, IconComponent, style} : any) {
+function StaticListItem({title, subtitle, image, IconComponent, style, onPress} : any) {
     return (
-        <View style={[styles.container, style]}>
-            {/* Render the IconComponent prop only if it is provided */}
-            {IconComponent}
+        <TouchableWithoutFeedback onPress={onPress}>
+            <View style={[styles.container, style]}>
+                {/* Render the IconComponent prop only if it is provided */}
+                {IconComponent}
 
-            {/* Render the image component only if the image prop is provided */}
-            {image && <Image source={image} style={styles.image}/>}
+                {/* Render the image component only if the image prop is provided */}
+                {image && <Image source={image} style={styles.image}/>}
 
-            {/* This container layout the title and subtitle vertically on the right of the image */}
-            <View style={styles.detailsContainer}>
-                <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
-                {subtitle && <AppText color = "gray" numberOfLines={2}>{subtitle}</AppText>}
+                {/* This container layout the title and subtitle vertically on the right of the image */}
+                <View style={styles.detailsContainer}>
+                    <AppText style={styles.title} numberOfLines={1}>{title}</AppText>
+                    {subtitle && <AppText color = "gray" numberOfLines={2}>{subtitle}</AppText>}
+                </View>
+                <MaterialCommunityIcons name='chevron-right' color={colors.gray} size={25} />
             </View>
-            <MaterialCommunityIcons name='chevron-right' color={colors.gray} size={25} />
-        </View>
+        </TouchableWithoutFeedback>
+
     );
 }
 

@@ -5,16 +5,19 @@ import { Image, View, StyleSheet } from 'react-native';
 import AppText from '../components/AppText';
 import StaticListItem from '../components/lists/StaticListItem';
 
-function ListingDetailsScreen() {
+function ListingDetailsScreen({route}:any) {
+    /* route gives access to the object passed through navigation.navigate. The params property gives us access to all the parameters of the sent object*/
+    const item = route.params;
+
     return (
         <View>
             <Image
                 style={styles.image}
-                source={require("../appAssets/jacket.jpg")}
+                source={item.imageSource}
             />
             <View style={styles.detailsContainer}>
-                <AppText style={styles.title}>Red jacket for Sale</AppText>
-                <AppText style= {styles.price} color = "secondary">$100</AppText>
+                <AppText style={styles.title}>{item.title}</AppText>
+                <AppText style= {styles.price} color = "secondary">{item.subtitle}</AppText>
                 <View style={styles.userContainer}>
                     <StaticListItem
                      image={require("../appAssets/mosh.jpg")}

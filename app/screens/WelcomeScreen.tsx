@@ -6,7 +6,7 @@ import colors from '../config/colors';
 import AppButton from '../components/AppButton';
 
 
-function WelcomeScreen() {
+function WelcomeScreen({navigation} :any) {
     return (
         
         <ImageBackground
@@ -21,8 +21,8 @@ function WelcomeScreen() {
                 />
                 <Text style={styles.tagline}>Sell What You don't Need</Text>
             </View>
-            <AppButton title="login" onPress={() => console.log("Login button handled")} />
-            <AppButton title="register" onPress={() => console.log("Register button handled")} color = "secondary"/>
+            <AppButton title="login" onPress={() => navigation.navigate("Login")} />
+            <AppButton title="register" color = "secondary" onPress={() => navigation.navigate("Register")} />
         </ImageBackground>
     );
 }
