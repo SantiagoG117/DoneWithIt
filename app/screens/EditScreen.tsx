@@ -8,33 +8,16 @@ import FormImagePicker from '../components/FormImagePicker';
 
 import * as Yup from 'yup';
 import useLocation from '../hooks/useLocation';
+import listingsApi from '../api/listings';
 
 
-
+//?Validation
 const validationSchema = Yup.object().shape({
-    title: Yup.
-            string().
-            required().
-            min(1)
-            .label('Title'),
-    price: Yup.
-            number().
-            required().
-            min(1).
-            max(10000)
-            .label('Price'),
-    category: Yup.
-                object()
-                .required()
-                .nullable()
-                .label('Category'),
-    description: Yup.
-                string().
-                optional().
-                label('Description'),
-    images: Yup.
-                array()
-                .min(1, "Please select at least one image.")
+    title: Yup.string().required().min(1).label('Title'),
+    price: Yup.number().required().min(1).max(10000).label('Price'),
+    category: Yup.object().required().nullable().label('Category'),
+    description: Yup.string().optional().label('Description'),
+    images: Yup.array().min(1, "Please select at least one image.")
 })
 
 const categories = [
@@ -59,7 +42,21 @@ const categories = [
 ];
 
 function EditScreen() {
+    
     const location = useLocation();
+    const handleSubmit = async(listing: any) => {
+        
+        //Location is not a value defined in the form. To store it in the api server we have to explicitly pass as an argument
+        //When adding a listing first we spread the listing properties and then we add the location object.
+        const result = await listingsApi.addListing({...listing, location});
+
+        if (!result.ok)
+            return alert('Could not save the listing');
+
+        alert('Success');
+    }
+
+
     return (
         <SafeAreaView style={styles.container}>
             <AppForm
@@ -70,7 +67,7 @@ function EditScreen() {
                     description:'',
                     images:[] //Set the data type of the images as an empty array
                 }}
-                onSubmit={(values: any) => console.log(values)}
+                onSubmit={handleSubmit}
                 validationSchema={validationSchema}
             >
                 <FormImagePicker
@@ -82,7 +79,6 @@ function EditScreen() {
                     placeholder='Title'
                     autoCapitalize='words'
                     maxlength={255}
-                    
                 />
 
                 <AppFormField
@@ -110,13 +106,7 @@ function EditScreen() {
                 />
 
                 <AppSubmitButton title='post' />
-                    
-               
-
-
             </AppForm>
-            
-            
         </SafeAreaView>
     );
 }

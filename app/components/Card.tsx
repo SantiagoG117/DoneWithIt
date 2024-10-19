@@ -11,12 +11,12 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
         Consumer of this component can pass as property of the imageSource object require("local/path") for local images or {uri: 'https://remote/path'} for remote images
         ImageSourcePropType: Type that defines the possible values for the 'source' prop in the Image component. It can include Local Image Sources and Remote Image URL
 */
-function AppCard({title , subTitle, imageSource, onPress} : {title: string, subTitle: string ,imageSource: ImageSourcePropType, onPress: any} ) {
+function AppCard({title , subTitle, imageSource, onPress} : any ) {
     return (
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.card}>
                 <Image
-                    source={imageSource}
+                    source={{uri: imageSource}}
                     style={styles.image}
                 >
                 </Image>

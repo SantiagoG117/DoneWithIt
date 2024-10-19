@@ -4,7 +4,6 @@ import { TextInput, View, StyleSheet, Platform, TouchableWithoutFeedback, Modal,
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../config/colors';
-import defaultStyles from "../config/styles"
 import AppText from './AppText';
 import AppPickerItem from './AppPickerItem';
 
